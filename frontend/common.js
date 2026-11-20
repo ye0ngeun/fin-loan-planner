@@ -38,7 +38,9 @@ function md(text) {
     const m = raw.match(/^(\s*)(-|\d+\.)\s+(.*)$/);
     if (m) {
       const type = m[2] === "-" ? "ul" : "ol";
-      if (list !== type) { if (list) html += `</${list}>`; html += `<${type}>`; list = type; }
+      // 번호 목록 사이에 하위 항목이 끼어도 번호가 1로 돌아가지 않도록 시작 번호를 적는다
+      const start = type === "ol" ? ` start="${parseInt(m[2], 10)}"` : "";
+      if (list !== type) { if (list) html += `</${list}>`; html += `<${type}${start}>`; list = type; }
       html += `<li>${inline(m[3])}</li>`;
     } else {
       if (list) { html += `</${list}>`; list = null; }
