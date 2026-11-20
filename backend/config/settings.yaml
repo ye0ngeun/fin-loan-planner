@@ -1,0 +1,58 @@
+# 실행 설정. 재계획 상한·Tool 기본값·호출 간격은 코드가 아니라 여기서 바꾼다.
+# 키는 .env 에만 둔다 (NF3001).
+
+paths:
+  data_dir: data            # SQLite 파일(계획, 실행 로그)이 생기는 곳
+  plans_db: data/plans.sqlite3
+  logs_db: data/logs.sqlite3
+
+llm:
+  chat_model: gpt-4.1-mini
+  embedding_model: text-embedding-3-small
+  temperature: 0
+  max_retries: 3
+  timeout_sec: 60
+
+agent:
+  max_replans: 3              # 재계획 상한 (F3009, NF3004)
+  memory_turns: 6             # 대화 맥락에 남길 최근 요청·응답 수 (F3010)
+  default_term_years: 30      # 대출 기간을 말하지 않았을 때 계산에 쓰는 기본값 (응답에 기본값임을 밝힌다)
+  consult_minutes: 60         # 상담 종료 시각을 말하지 않았을 때 시작 시각에 더하는 시간
+  max_products_per_round: 12  # 한 번의 실행에서 상세정보를 조회할 최대 상품 수
+  show_top: 3                 # 응답에 추천으로 보여 줄 상품 수
+  # 충족 후보가 없을 때 차례로 시도하는 대안 (F3009)
+  #   relax_rate_type: 선호 금리 유형(고정/변동) 조건을 풀어 다시 판단 (Tool 재호출 없음)
+  #   add_group:<권역코드>: 그 권역의 상품을 더 조회
+  replan_steps: [relax_rate_type, "add_group:050000", "add_group:030300", "add_group:030200"]
+
+fss:
+  # 금융감독원 금융상품한눈에 Open API (후보 조회 F3002, 상세 조회 F3003)
+  base_url: https://finlife.fss.or.kr/finlifeapi
+  endpoint: mortgageLoanProductsSearch.json
+  default_groups: ["020000"]   # 권역을 정하지 않으면 은행 권역
+  group_names: {"020000": 은행, "030200": 여신전문, "030300": 저축은행, "050000": 보험, "060000": 금융투자}
+  timeout_sec: 10
+  max_pages: 5
+  request_interval_sec: 0.3
+
+molit:
+  # 국토교통부 아파트 매매 실거래가 (시세 조회)
+  base_url: https://apis.data.go.kr/1613000/RTMSDataSvcAptTrade/getRTMSDataSvcAptTrade
+  default_months: 3            # 기간을 정하지 않으면 최근 3개월(지난달까지)
+  num_of_rows: 1000
+  timeout_sec: 15
+  request_interval_sec: 0.3
+
+kakao:
+  # 카카오 로컬 키워드 장소 검색 (보조 정보 F3004)
+  base_url: https://dapi.kakao.com/v2/local/search/keyword.json
+  category_group_code: BK9     # 은행
+  size: 5
+  timeout_sec: 5
+
+rag:
+  # 심화 F3022: 2회차(fin-product-rag)에서 만든 Chroma 색인 경로. 상대 경로는 backend/ 폴더 기준 (두 저장소를 같은 폴더에 받았을 때).
+  chroma_dir: ../../fin-product-rag/chroma_db
+  collection: loan_docs
+  top_k: 4
+  min_relevance: 0.3

@@ -1,0 +1,45 @@
+{
+ "result": {
+  "prdt_div": "M",
+  "total_count": 1,
+  "max_page_no": 1,
+  "now_page_no": 1,
+  "err_cd": "000",
+  "err_msg": "정상",
+  "baseList": [
+   {
+    "dcls_month": "202611",
+    "fin_co_no": "0010178",
+    "fin_prdt_cd": "SB1",
+    "kor_co_nm": "에스비아이저축은행",
+    "fin_prdt_nm": "SBI 아파트담보대출",
+    "join_way": "영업점,인터넷",
+    "loan_inci_expn": "- 인지세 : 해당세액의 50%",
+    "erly_rpay_fee": "- 중도상환대출금×1.2%×잔존기간÷대출기간",
+    "dly_rate": "- 적용금리+3%",
+    "loan_lmt": "LTV 70% 이내",
+    "dcls_strt_day": "20261101",
+    "dcls_end_day": null,
+    "fin_co_subm_day": "202610301200",
+    "top_fin_grp_no": "030300"
+   }
+  ],
+  "optionList": [
+   {
+    "dcls_month": "202611",
+    "fin_co_no": "0010178",
+    "fin_prdt_cd": "SB1",
+    "mrtg_type": "A",
+    "mrtg_type_nm": "아파트",
+    "rpay_type": "D",
+    "rpay_type_nm": "분할상환방식",
+    "lend_rate_type": "C",
+    "lend_rate_type_nm": "변동금리",
+    "lend_rate_min": 6.5,
+    "lend_rate_max": 9.9,
+    "lend_rate_avg": 7.8,
+    "top_fin_grp_no": "030300"
+   }
+  ]
+ }
+}

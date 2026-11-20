@@ -1,0 +1,47 @@
+{
+ "documents": [
+  {
+   "place_name": "우리은행 공덕역지점",
+   "address_name": "서울 마포구 공덕동 256-13",
+   "road_address_name": "서울 마포구 마포대로 92",
+   "phone": "02-000-0001",
+   "place_url": "http://place.map.kakao.com/1000001",
+   "category_group_code": "BK9"
+  },
+  {
+   "place_name": "우리은행 마포지점",
+   "address_name": "서울 마포구 도화동 173",
+   "road_address_name": "서울 마포구 마포대로 33",
+   "phone": "02-000-0002",
+   "place_url": "http://place.map.kakao.com/1000002",
+   "category_group_code": "BK9"
+  },
+  {
+   "place_name": "삼성생명보험 마포지점",
+   "address_name": "서울 마포구 아현동 699",
+   "road_address_name": "서울 마포구 마포대로 195",
+   "phone": "",
+   "place_url": "http://place.map.kakao.com/1000003",
+   "category_group_code": "BK9"
+  },
+  {
+   "place_name": "국민은행 공덕동지점",
+   "address_name": "서울 마포구 공덕동 404",
+   "road_address_name": "서울 마포구 만리재로 14",
+   "phone": "02-000-0004",
+   "place_url": "http://place.map.kakao.com/1000004",
+   "category_group_code": "BK9"
+  },
+  {
+   "place_name": "신한은행 강남중앙지점",
+   "address_name": "서울 강남구 역삼동 823",
+   "road_address_name": "서울 강남구 테헤란로 134",
+   "phone": "02-000-0005",
+   "place_url": "http://place.map.kakao.com/1000005",
+   "category_group_code": "BK9"
+  }
+ ],
+ "meta": {
+  "total_count": 5
+ }
+}

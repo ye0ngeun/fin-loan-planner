@@ -1,0 +1,20 @@
+# 키 (NF3001)
+.env
+.env.*
+!.env.example
+
+# 실행 중 생기는 SQLite (계획·실행 로그)
+backend/data/
+data/
+
+# 금감원 공시값이 든 결과물은 재배포하지 않는다 (금감원 오픈API 이용약관 제9조 3항)
+docs/samples/raw/
+docs/screenshots/
+
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+*.zip
+.DS_Store

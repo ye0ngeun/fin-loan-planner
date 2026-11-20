@@ -1,0 +1,695 @@
+{
+ "scenario": "한번에_충족",
+ "expect": "재계획 없이 충족 상품 추천, 지점 안내",
+ "turns": [
+  {
+   "message": "마포구 6억 아파트, 현금 2억 있어요. 월 200만원 이하로 갚을 주담대 찾아줘",
+   "answer": "**판단 기준**: 대출금 4억원 (입력한 집값 60,000만원 − 보유 자금 20,000만원) · 기간 30년 · 월 상환액 상한 200.0만원\n- 대출 기간을 말하지 않아 기본값 30년으로 계산했습니다.\n\n**조건을 충족하는 상품 4개 중 상위 3개** (월 상환액 낮은 순)\n1. **국민은행 KB주택담보대출** (은행) — 변동금리 · 분할상환방식(원리금균등)\n   - 평균금리 3.95% (공시 최저 3.70% ~ 최고 5.00%)\n   - 월 상환액 약 189.8만원 (최고금리면 214.7만원)\n   - 판단: 월 상환액 189.8만원 ≤ 상한 200.0만원 · 근거: 금감원 공시 202611월 · 한도 공시: LTV 70% 이내\n2. **우리은행 우리아파트론** (은행) — 변동금리 · 분할상환방식(원리금균등)\n   - 평균금리 4.05% (공시 최저 3.75% ~ 최고 5.10%)\n   - 월 상환액 약 192.1만원 (최고금리면 217.2만원)\n   - 판단: 월 상환액 192.1만원 ≤ 상한 200.0만원 · 근거: 금감원 공시 202611월 · 한도 공시: LTV 70% 이내\n3. **농협은행주식회사 NH주택담보대출** (은행) — 변동금리 · 분할상환방식(원리금균등)\n   - 평균금리 4.25% (공시 최저 3.90% ~ 최고 5.60%)\n   - 월 상환액 약 196.8만원 (최고금리면 229.6만원)\n   - 판단: 월 상환액 196.8만원 ≤ 상한 200.0만원 · 근거: 금감원 공시 202611월 · 한도 공시: LTV 70% 이내\n\n**제외한 후보 1개**\n- 중소기업은행 IBK주택담보대출: 공시 금리가 없어 판단하지 않음\n\n**참고 시세** 서울특별시 마포구 최근 3개월 거래 24건 중위 11억 5,000만원\n\n**상담 지점 후보** ('마포구 국민은행' 검색)\n- [국민은행 공덕동지점](http://place.map.kakao.com/1000004) · 서울 마포구 만리재로 14 · 02-000-0004\n- 지점 검색 결과는 상품 취급 여부를 알려 주지 않습니다. 방문 전 지점에 확인하세요.\n\n저장하려면 \"1번으로 토요일 오후 2시 상담 저장해줘\"처럼 말해 주세요.",
+   "intent": "plan",
+   "elapsed_ms": 619,
+   "conditions": {
+    "기준": {
+     "집값(만원)": 60000.0,
+     "지역(서울 구)": "마포구",
+     "보유 자금(만원)": 20000.0,
+     "대출 기간(년)": 30
+    },
+    "선호": {},
+    "제약": {
+     "월 상환액 상한(만원)": 200.0
+    }
+   },
+   "calls": [
+    {
+     "step": 1,
+     "tool": "get_apartment_prices",
+     "args": {
+      "region": "마포구"
+     },
+     "ok": true,
+     "code": null,
+     "reused": false,
+     "round": 0,
+     "elapsed_ms": 602,
+     "summary": "서울특별시 마포구 거래 24건, 중위 115,000만원"
+    },
+    {
+     "step": 2,
+     "tool": "search_mortgage_products",
+     "args": {
+      "groups": [
+       "020000"
+      ]
+     },
+     "ok": true,
+     "code": null,
+     "reused": false,
+     "round": 0,
+     "elapsed_ms": 0,
+     "summary": "후보 5건 (권역 020000, 공시월 202611)"
+    },
+    {
+     "step": 3,
+     "tool": "get_mortgage_product_detail",
+     "args": {
+      "product_id": "020000:0010001:1054"
+     },
+     "ok": true,
+     "code": null,
+     "reused": false,
+     "round": 0,
+     "elapsed_ms": 0,
+     "summary": "우리은행 우리아파트론: 금리 옵션 3개"
+    },
+    {
+     "step": 3,
+     "tool": "get_mortgage_product_detail",
+     "args": {
+      "product_id": "020000:0010927:KB001"
+     },
+     "ok": true,
+     "code": null,
+     "reused": false,
+     "round": 0,
+     "elapsed_ms": 0,
+     "summary": "국민은행 KB주택담보대출: 금리 옵션 2개"
+    },
+    {
+     "step": 3,
+     "tool": "get_mortgage_product_detail",
+     "args": {
+      "product_id": "020000:0011625:SH100"
+     },
+     "ok": true,
+     "code": null,
+     "reused": false,
+     "round": 0,
+     "elapsed_ms": 0,
+     "summary": "신한은행 신한주택대출(아파트): 금리 옵션 3개"
+    },
+    {
+     "step": 3,
+     "tool": "get_mortgage_product_detail",
+     "args": {
+      "product_id": "020000:0013175:NH777"
+     },
+     "ok": true,
+     "code": null,
+     "reused": false,
+     "round": 0,
+     "elapsed_ms": 0,
+     "summary": "농협은행주식회사 NH주택담보대출: 금리 옵션 1개"
+    },
+    {
+     "step": 3,
+     "tool": "get_mortgage_product_detail",
+     "args": {
+      "product_id": "020000:0010030:IB500"
+     },
+     "ok": false,
+     "code": "NO_RATE",
+     "reused": false,
+     "round": 0,
+     "elapsed_ms": 0,
+     "summary": "NO_RATE: 중소기업은행 IBK주택담보대출: 공시된 금리 옵션이 없어 판단할 수 없습니다."
+    },
+    {
+     "step": 4,
+     "tool": "search_bank_branches",
+     "args": {
+      "region": "마포구",
+      "bank_name": "국민은행"
+     },
+     "ok": true,
+     "code": null,
+     "reused": false,
+     "round": 0,
+     "elapsed_ms": 0,
+     "summary": "지점 1곳 ('마포구 국민은행')"
+    }
+   ],
+   "replans": [],
+   "stop_reason": null,
+   "error": null,
+   "events": [
+    {
+     "event": "session.start",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 1,
+     "ts": "2026-11-20T06:03:11.575",
+     "payload": {
+      "message": "마포구 6억 아파트, 현금 2억 있어요. 월 200만원 이하로 갚을 주담대 찾아줘",
+      "context_conditions": {}
+     }
+    },
+    {
+     "event": "stage.enter",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 2,
+     "ts": "2026-11-20T06:03:11.585",
+     "payload": {
+      "stage": "analyze"
+     }
+    },
+    {
+     "event": "decision",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 3,
+     "ts": "2026-11-20T06:03:11.587",
+     "payload": {
+      "stage": "analyze",
+      "by": "llm",
+      "kind": "intent",
+      "intent": "plan",
+      "reason": "조건에 맞는 대출 상품을 찾아 달라는 요청",
+      "tools": [
+       "get_apartment_prices",
+       "search_mortgage_products",
+       "get_mortgage_product_detail",
+       "search_bank_branches"
+      ],
+      "extracted": {
+       "price_manwon": 60000.0,
+       "own_funds_manwon": 20000.0,
+       "max_monthly_payment_manwon": 200.0,
+       "region": "마포구"
+      },
+      "changed": [
+       "price_manwon",
+       "own_funds_manwon",
+       "max_monthly_payment_manwon",
+       "region"
+      ],
+      "conditions": {
+       "기준": {
+        "집값(만원)": 60000.0,
+        "지역(서울 구)": "마포구",
+        "보유 자금(만원)": 20000.0
+       },
+       "선호": {},
+       "제약": {
+        "월 상환액 상한(만원)": 200.0
+       }
+      }
+     }
+    },
+    {
+     "event": "stage.exit",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 4,
+     "ts": "2026-11-20T06:03:11.587",
+     "payload": {
+      "stage": "analyze",
+      "elapsed_ms": 3
+     }
+    },
+    {
+     "event": "stage.enter",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 5,
+     "ts": "2026-11-20T06:03:11.588",
+     "payload": {
+      "stage": "plan"
+     }
+    },
+    {
+     "event": "decision",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 6,
+     "ts": "2026-11-20T06:03:11.588",
+     "payload": {
+      "stage": "plan",
+      "by": "rule",
+      "kind": "plan",
+      "steps": [
+       {
+        "id": 1,
+        "tool": "get_apartment_prices",
+        "args": {
+         "region": "마포구"
+        },
+        "bind": null,
+        "deferred": false
+       },
+       {
+        "id": 2,
+        "tool": "search_mortgage_products",
+        "args": {
+         "groups": [
+          "020000"
+         ]
+        },
+        "bind": null,
+        "deferred": false
+       },
+       {
+        "id": 3,
+        "tool": "get_mortgage_product_detail",
+        "args": {},
+        "bind": "each_product",
+        "deferred": false
+       },
+       {
+        "id": 4,
+        "tool": "search_bank_branches",
+        "args": {
+         "region": "마포구"
+        },
+        "bind": "best_company",
+        "deferred": true
+       }
+      ],
+      "llm_tools": [
+       "get_apartment_prices",
+       "search_mortgage_products",
+       "get_mortgage_product_detail",
+       "search_bank_branches"
+      ],
+      "dropped_unknown": [],
+      "missing": [],
+      "defaults": [
+       "대출 기간을 말하지 않아 기본값 30년으로 계산했습니다."
+      ],
+      "notes": [],
+      "reason": "Tool 호출 순서를 정함"
+     }
+    },
+    {
+     "event": "stage.exit",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 7,
+     "ts": "2026-11-20T06:03:11.588",
+     "payload": {
+      "stage": "plan",
+      "elapsed_ms": 0
+     }
+    },
+    {
+     "event": "stage.enter",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 8,
+     "ts": "2026-11-20T06:03:11.588",
+     "payload": {
+      "stage": "execute"
+     }
+    },
+    {
+     "event": "tool.request",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 9,
+     "ts": "2026-11-20T06:03:11.588",
+     "payload": {
+      "step": 1,
+      "tool": "get_apartment_prices",
+      "args": {
+       "region": "마포구"
+      },
+      "round": 0
+     }
+    },
+    {
+     "event": "tool.response",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 10,
+     "ts": "2026-11-20T06:03:12.190",
+     "payload": {
+      "step": 1,
+      "tool": "get_apartment_prices",
+      "ok": true,
+      "code": null,
+      "elapsed_ms": 602,
+      "summary": "서울특별시 마포구 거래 24건, 중위 115,000만원"
+     }
+    },
+    {
+     "event": "tool.request",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 11,
+     "ts": "2026-11-20T06:03:12.190",
+     "payload": {
+      "step": 2,
+      "tool": "search_mortgage_products",
+      "args": {
+       "groups": [
+        "020000"
+       ]
+      },
+      "round": 0
+     }
+    },
+    {
+     "event": "tool.response",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 12,
+     "ts": "2026-11-20T06:03:12.191",
+     "payload": {
+      "step": 2,
+      "tool": "search_mortgage_products",
+      "ok": true,
+      "code": null,
+      "elapsed_ms": 0,
+      "summary": "후보 5건 (권역 020000, 공시월 202611)"
+     }
+    },
+    {
+     "event": "tool.request",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 13,
+     "ts": "2026-11-20T06:03:12.191",
+     "payload": {
+      "step": 3,
+      "tool": "get_mortgage_product_detail",
+      "args": {
+       "product_id": "020000:0010001:1054"
+      },
+      "round": 0
+     }
+    },
+    {
+     "event": "tool.response",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 14,
+     "ts": "2026-11-20T06:03:12.191",
+     "payload": {
+      "step": 3,
+      "tool": "get_mortgage_product_detail",
+      "ok": true,
+      "code": null,
+      "elapsed_ms": 0,
+      "summary": "우리은행 우리아파트론: 금리 옵션 3개"
+     }
+    },
+    {
+     "event": "tool.request",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 15,
+     "ts": "2026-11-20T06:03:12.191",
+     "payload": {
+      "step": 3,
+      "tool": "get_mortgage_product_detail",
+      "args": {
+       "product_id": "020000:0010927:KB001"
+      },
+      "round": 0
+     }
+    },
+    {
+     "event": "tool.response",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 16,
+     "ts": "2026-11-20T06:03:12.191",
+     "payload": {
+      "step": 3,
+      "tool": "get_mortgage_product_detail",
+      "ok": true,
+      "code": null,
+      "elapsed_ms": 0,
+      "summary": "국민은행 KB주택담보대출: 금리 옵션 2개"
+     }
+    },
+    {
+     "event": "tool.request",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 17,
+     "ts": "2026-11-20T06:03:12.191",
+     "payload": {
+      "step": 3,
+      "tool": "get_mortgage_product_detail",
+      "args": {
+       "product_id": "020000:0011625:SH100"
+      },
+      "round": 0
+     }
+    },
+    {
+     "event": "tool.response",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 18,
+     "ts": "2026-11-20T06:03:12.191",
+     "payload": {
+      "step": 3,
+      "tool": "get_mortgage_product_detail",
+      "ok": true,
+      "code": null,
+      "elapsed_ms": 0,
+      "summary": "신한은행 신한주택대출(아파트): 금리 옵션 3개"
+     }
+    },
+    {
+     "event": "tool.request",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 19,
+     "ts": "2026-11-20T06:03:12.191",
+     "payload": {
+      "step": 3,
+      "tool": "get_mortgage_product_detail",
+      "args": {
+       "product_id": "020000:0013175:NH777"
+      },
+      "round": 0
+     }
+    },
+    {
+     "event": "tool.response",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 20,
+     "ts": "2026-11-20T06:03:12.191",
+     "payload": {
+      "step": 3,
+      "tool": "get_mortgage_product_detail",
+      "ok": true,
+      "code": null,
+      "elapsed_ms": 0,
+      "summary": "농협은행주식회사 NH주택담보대출: 금리 옵션 1개"
+     }
+    },
+    {
+     "event": "tool.request",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 21,
+     "ts": "2026-11-20T06:03:12.191",
+     "payload": {
+      "step": 3,
+      "tool": "get_mortgage_product_detail",
+      "args": {
+       "product_id": "020000:0010030:IB500"
+      },
+      "round": 0
+     }
+    },
+    {
+     "event": "tool.response",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 22,
+     "ts": "2026-11-20T06:03:12.191",
+     "payload": {
+      "step": 3,
+      "tool": "get_mortgage_product_detail",
+      "ok": false,
+      "code": "NO_RATE",
+      "elapsed_ms": 0,
+      "summary": "NO_RATE: 중소기업은행 IBK주택담보대출: 공시된 금리 옵션이 없어 판단할 수 없습니다."
+     }
+    },
+    {
+     "event": "stage.exit",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 23,
+     "ts": "2026-11-20T06:03:12.191",
+     "payload": {
+      "stage": "execute",
+      "elapsed_ms": 603
+     }
+    },
+    {
+     "event": "stage.enter",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 24,
+     "ts": "2026-11-20T06:03:12.191",
+     "payload": {
+      "stage": "judge"
+     }
+    },
+    {
+     "event": "decision",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 25,
+     "ts": "2026-11-20T06:03:12.192",
+     "payload": {
+      "stage": "judge",
+      "by": "rule",
+      "kind": "next",
+      "next": "execute",
+      "reason": "추천 상품이 정해져 지점 검색을 이어서 실행",
+      "satisfied": 4,
+      "excluded": 1,
+      "principal": 40000.0,
+      "payment_cap": 200.0
+     }
+    },
+    {
+     "event": "stage.exit",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 26,
+     "ts": "2026-11-20T06:03:12.192",
+     "payload": {
+      "stage": "judge",
+      "elapsed_ms": 0
+     }
+    },
+    {
+     "event": "stage.enter",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 27,
+     "ts": "2026-11-20T06:03:12.192",
+     "payload": {
+      "stage": "execute"
+     }
+    },
+    {
+     "event": "tool.request",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 28,
+     "ts": "2026-11-20T06:03:12.192",
+     "payload": {
+      "step": 4,
+      "tool": "search_bank_branches",
+      "args": {
+       "region": "마포구",
+       "bank_name": "국민은행"
+      },
+      "round": 0
+     }
+    },
+    {
+     "event": "tool.response",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 29,
+     "ts": "2026-11-20T06:03:12.193",
+     "payload": {
+      "step": 4,
+      "tool": "search_bank_branches",
+      "ok": true,
+      "code": null,
+      "elapsed_ms": 0,
+      "summary": "지점 1곳 ('마포구 국민은행')"
+     }
+    },
+    {
+     "event": "stage.exit",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 30,
+     "ts": "2026-11-20T06:03:12.193",
+     "payload": {
+      "stage": "execute",
+      "elapsed_ms": 0
+     }
+    },
+    {
+     "event": "stage.enter",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 31,
+     "ts": "2026-11-20T06:03:12.193",
+     "payload": {
+      "stage": "judge"
+     }
+    },
+    {
+     "event": "decision",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 32,
+     "ts": "2026-11-20T06:03:12.193",
+     "payload": {
+      "stage": "judge",
+      "by": "rule",
+      "kind": "next",
+      "next": "respond",
+      "reason": "응답 생성",
+      "satisfied": 4,
+      "excluded": 1,
+      "principal": 40000.0,
+      "payment_cap": 200.0
+     }
+    },
+    {
+     "event": "stage.exit",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 33,
+     "ts": "2026-11-20T06:03:12.193",
+     "payload": {
+      "stage": "judge",
+      "elapsed_ms": 0
+     }
+    },
+    {
+     "event": "stage.enter",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 34,
+     "ts": "2026-11-20T06:03:12.194",
+     "payload": {
+      "stage": "respond"
+     }
+    },
+    {
+     "event": "stage.exit",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 35,
+     "ts": "2026-11-20T06:03:12.194",
+     "payload": {
+      "stage": "respond",
+      "elapsed_ms": 0
+     }
+    },
+    {
+     "event": "session.end",
+     "session_id": "scenario-1",
+     "turn": 1,
+     "seq": 36,
+     "ts": "2026-11-20T06:03:12.194",
+     "payload": {
+      "intent": "plan",
+      "replans": 0,
+      "tool_calls": 8,
+      "elapsed_ms": 619,
+      "answer_preview": "**판단 기준**: 대출금 4억원 (입력한 집값 60,000만원 − 보유 자금 20,000만원) · 기간 30년 · 월 상환액 상한 200.0만"
+     }
+    }
+   ]
+  }
+ ]
+}

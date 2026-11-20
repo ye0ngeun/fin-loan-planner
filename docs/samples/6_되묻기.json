@@ -1,0 +1,173 @@
+{
+ "scenario": "되묻기",
+ "expect": "보유 자금·집값이 없어 Tool 호출 전에 되묻기",
+ "turns": [
+  {
+   "message": "월 150만원 이하로 갚을 주담대 찾아줘",
+   "answer": "계산을 시작하려면 다음 조건이 더 필요합니다: 보유 자금(또는 대출 희망액), 집값(또는 시세를 볼 서울 구).\n예) \"현금 2억 있어요\", \"집값은 6억이에요\"",
+   "intent": "plan",
+   "elapsed_ms": 8,
+   "conditions": {
+    "기준": {
+     "대출 기간(년)": 30
+    },
+    "선호": {},
+    "제약": {
+     "월 상환액 상한(만원)": 150.0
+    }
+   },
+   "calls": [],
+   "replans": [],
+   "stop_reason": null,
+   "error": null,
+   "events": [
+    {
+     "event": "session.start",
+     "session_id": "scenario-6",
+     "turn": 1,
+     "seq": 1,
+     "ts": "2026-11-20T06:03:14.054",
+     "payload": {
+      "message": "월 150만원 이하로 갚을 주담대 찾아줘",
+      "context_conditions": {}
+     }
+    },
+    {
+     "event": "stage.enter",
+     "session_id": "scenario-6",
+     "turn": 1,
+     "seq": 2,
+     "ts": "2026-11-20T06:03:14.061",
+     "payload": {
+      "stage": "analyze"
+     }
+    },
+    {
+     "event": "decision",
+     "session_id": "scenario-6",
+     "turn": 1,
+     "seq": 3,
+     "ts": "2026-11-20T06:03:14.061",
+     "payload": {
+      "stage": "analyze",
+      "by": "llm",
+      "kind": "intent",
+      "intent": "plan",
+      "reason": "조건에 맞는 대출 상품을 찾아 달라는 요청",
+      "tools": [
+       "search_mortgage_products",
+       "get_mortgage_product_detail"
+      ],
+      "extracted": {
+       "max_monthly_payment_manwon": 150.0
+      },
+      "changed": [
+       "max_monthly_payment_manwon"
+      ],
+      "conditions": {
+       "기준": {},
+       "선호": {},
+       "제약": {
+        "월 상환액 상한(만원)": 150.0
+       }
+      }
+     }
+    },
+    {
+     "event": "stage.exit",
+     "session_id": "scenario-6",
+     "turn": 1,
+     "seq": 4,
+     "ts": "2026-11-20T06:03:14.061",
+     "payload": {
+      "stage": "analyze",
+      "elapsed_ms": 0
+     }
+    },
+    {
+     "event": "stage.enter",
+     "session_id": "scenario-6",
+     "turn": 1,
+     "seq": 5,
+     "ts": "2026-11-20T06:03:14.061",
+     "payload": {
+      "stage": "plan"
+     }
+    },
+    {
+     "event": "decision",
+     "session_id": "scenario-6",
+     "turn": 1,
+     "seq": 6,
+     "ts": "2026-11-20T06:03:14.061",
+     "payload": {
+      "stage": "plan",
+      "by": "rule",
+      "kind": "plan",
+      "steps": [],
+      "llm_tools": [
+       "search_mortgage_products",
+       "get_mortgage_product_detail"
+      ],
+      "dropped_unknown": [],
+      "missing": [
+       "보유 자금(또는 대출 희망액)",
+       "집값(또는 시세를 볼 서울 구)"
+      ],
+      "defaults": [
+       "대출 기간을 말하지 않아 기본값 30년으로 계산했습니다."
+      ],
+      "notes": [],
+      "reason": "필요한 조건이 모자라 Tool 을 부르기 전에 되묻는다"
+     }
+    },
+    {
+     "event": "stage.exit",
+     "session_id": "scenario-6",
+     "turn": 1,
+     "seq": 7,
+     "ts": "2026-11-20T06:03:14.061",
+     "payload": {
+      "stage": "plan",
+      "elapsed_ms": 0
+     }
+    },
+    {
+     "event": "stage.enter",
+     "session_id": "scenario-6",
+     "turn": 1,
+     "seq": 8,
+     "ts": "2026-11-20T06:03:14.062",
+     "payload": {
+      "stage": "respond"
+     }
+    },
+    {
+     "event": "stage.exit",
+     "session_id": "scenario-6",
+     "turn": 1,
+     "seq": 9,
+     "ts": "2026-11-20T06:03:14.062",
+     "payload": {
+      "stage": "respond",
+      "elapsed_ms": 0
+     }
+    },
+    {
+     "event": "session.end",
+     "session_id": "scenario-6",
+     "turn": 1,
+     "seq": 10,
+     "ts": "2026-11-20T06:03:14.062",
+     "payload": {
+      "intent": "plan",
+      "replans": 0,
+      "tool_calls": 0,
+      "elapsed_ms": 8,
+      "answer_preview": "계산을 시작하려면 다음 조건이 더 필요합니다: 보유 자금(또는 대출 희망액), 집값(또는 시세를 볼 서울 구).\n예) \"현금 2억 있어요\", \""
+     }
+    }
+   ]
+  }
+ ]
+}

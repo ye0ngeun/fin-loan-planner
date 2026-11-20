@@ -1,0 +1,152 @@
+{
+ "scenario": "Tool_불필요",
+ "expect": "인사 → Tool 호출 없이 응답",
+ "turns": [
+  {
+   "message": "안녕하세요, 뭘 할 수 있어요?",
+   "answer": "안녕하세요. 내집마련 주택담보대출 플래너입니다. 집값·보유 자금·월 상환 한도를 알려 주시면 금감원 공시 상품의 월 상환액을 계산해 조건에 맞는 상품을 찾아 드립니다. 예: \"마포구 6억 아파트, 현금 2억, 월 200만원 이하\"",
+   "intent": "other",
+   "elapsed_ms": 9,
+   "conditions": {
+    "기준": {},
+    "선호": {},
+    "제약": {}
+   },
+   "calls": [],
+   "replans": [],
+   "stop_reason": null,
+   "error": null,
+   "events": [
+    {
+     "event": "session.start",
+     "session_id": "scenario-5",
+     "turn": 1,
+     "seq": 1,
+     "ts": "2026-11-20T06:03:14.045",
+     "payload": {
+      "message": "안녕하세요, 뭘 할 수 있어요?",
+      "context_conditions": {}
+     }
+    },
+    {
+     "event": "stage.enter",
+     "session_id": "scenario-5",
+     "turn": 1,
+     "seq": 2,
+     "ts": "2026-11-20T06:03:14.052",
+     "payload": {
+      "stage": "analyze"
+     }
+    },
+    {
+     "event": "decision",
+     "session_id": "scenario-5",
+     "turn": 1,
+     "seq": 3,
+     "ts": "2026-11-20T06:03:14.052",
+     "payload": {
+      "stage": "analyze",
+      "by": "llm",
+      "kind": "intent",
+      "intent": "other",
+      "reason": "인사나 사용법 질문이라 Tool 이 필요 없음",
+      "tools": [],
+      "extracted": {},
+      "changed": [],
+      "conditions": {
+       "기준": {},
+       "선호": {},
+       "제약": {}
+      }
+     }
+    },
+    {
+     "event": "stage.exit",
+     "session_id": "scenario-5",
+     "turn": 1,
+     "seq": 4,
+     "ts": "2026-11-20T06:03:14.052",
+     "payload": {
+      "stage": "analyze",
+      "elapsed_ms": 0
+     }
+    },
+    {
+     "event": "stage.enter",
+     "session_id": "scenario-5",
+     "turn": 1,
+     "seq": 5,
+     "ts": "2026-11-20T06:03:14.053",
+     "payload": {
+      "stage": "plan"
+     }
+    },
+    {
+     "event": "decision",
+     "session_id": "scenario-5",
+     "turn": 1,
+     "seq": 6,
+     "ts": "2026-11-20T06:03:14.053",
+     "payload": {
+      "stage": "plan",
+      "by": "rule",
+      "kind": "plan",
+      "steps": [],
+      "llm_tools": [],
+      "dropped_unknown": [],
+      "missing": [],
+      "defaults": [],
+      "notes": [],
+      "reason": "Tool 이 필요 없는 요청"
+     }
+    },
+    {
+     "event": "stage.exit",
+     "session_id": "scenario-5",
+     "turn": 1,
+     "seq": 7,
+     "ts": "2026-11-20T06:03:14.053",
+     "payload": {
+      "stage": "plan",
+      "elapsed_ms": 0
+     }
+    },
+    {
+     "event": "stage.enter",
+     "session_id": "scenario-5",
+     "turn": 1,
+     "seq": 8,
+     "ts": "2026-11-20T06:03:14.053",
+     "payload": {
+      "stage": "respond"
+     }
+    },
+    {
+     "event": "stage.exit",
+     "session_id": "scenario-5",
+     "turn": 1,
+     "seq": 9,
+     "ts": "2026-11-20T06:03:14.053",
+     "payload": {
+      "stage": "respond",
+      "elapsed_ms": 0
+     }
+    },
+    {
+     "event": "session.end",
+     "session_id": "scenario-5",
+     "turn": 1,
+     "seq": 10,
+     "ts": "2026-11-20T06:03:14.053",
+     "payload": {
+      "intent": "other",
+      "replans": 0,
+      "tool_calls": 0,
+      "elapsed_ms": 9,
+      "answer_preview": "안녕하세요. 내집마련 주택담보대출 플래너입니다. 집값·보유 자금·월 상환 한도를 알려 주시면 금감원 공시 상품의 월 상환액을 계산해 조건에 맞는"
+     }
+    }
+   ]
+  }
+ ]
+}

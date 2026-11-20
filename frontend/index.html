@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>불빛 하나 — 내집마련 대출 플래너</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand">《불빛 하나》 <span>내집마련 대출 플래너</span></div>
+    <nav><a href="index.html" class="active">대화</a><a href="plans.html">계획 관리</a><a href="logs.html">실행 로그</a></nav>
+  </header>
+  <main>
+    <div id="health"></div>
+    <div class="grid">
+      <section class="panel">
+        <h2>대화 <button class="ghost" id="reset" type="button">새 대화</button></h2>
+        <div id="messages">
+          <div class="msg bot">
+            <p>집값·보유 자금·월 상환 한도를 알려 주시면 금감원 공시 주택담보대출의 월 상환액을 계산해 조건에 맞는 상품을 찾아 드립니다.</p>
+            <p class="muted">금리·상환액 숫자는 공시값과 계산식으로만 만듭니다. 근거가 없는 값은 지어내지 않습니다.</p>
+          </div>
+        </div>
+        <div class="chips" id="examples">
+          <button class="chip" type="button">마포구 6억 아파트, 현금 2억 있어요. 월 200만원 이하로 갚을 주담대 찾아줘</button>
+          <button class="chip" type="button">고정금리로, 월 180만원 이하로 바꿔줘</button>
+          <button class="chip" type="button">1번으로 토요일 오후 2시 상담 저장해줘</button>
+          <button class="chip" type="button">마포구 아파트 시세 알려줘</button>
+          <button class="chip" type="button">LTV가 뭐야?</button>
+          <button class="chip" type="button">안녕하세요</button>
+        </div>
+        <form class="ask" id="ask">
+          <textarea id="input" placeholder="예: 마포구 6억 아파트, 현금 2억, 월 200만원 이하로 갚을 주담대 찾아줘" required maxlength="1000"></textarea>
+          <button id="send" type="submit">보내기</button>
+        </form>
+        <p class="muted" id="status"></p>
+      </section>
+      <aside class="panel">
+        <h2>실행 과정 <span class="muted" id="trace-meta"></span></h2>
+        <div id="conditions" class="cond"></div>
+        <ol class="timeline" id="timeline"><li class="muted">질문을 보내면 분석 → 계획 → 실행 → 판단 → (재계획) → 응답 순서로 여기에 표시됩니다.</li></ol>
+      </aside>
+    </div>
+  </main>
+  <footer class="notices">
+    <p>본 서비스는 정보 제공용이며 금융 전문가의 조언을 대신하지 않습니다. 실제 금리·한도는 금융회사 심사로 정해집니다.</p>
+    <p>상품 정보는 금융상품통합비교공시시스템(금융감독원) 금융회사 상품정보를 사용한 결과이며, 금융감독원은 정보의 정확성·최신성을 보증하지 않습니다.</p>
+  </footer>
+  <script src="config.js"></script>
+  <script src="common.js"></script>
+  <script src="chat.js"></script>
+</body>
+</html>
